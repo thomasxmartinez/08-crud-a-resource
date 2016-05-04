@@ -1,4 +1,4 @@
-![CF](https://i.imgur.com/7v5ASc8.png)  08-CRUD-a-resource
+![CF](https://i.imgur.com/7v5ASc8.png)  Lab 08: CRUD a Resource
 =======
 [![Build Status](https://travis-ci.org/codefellows-seattle-301d4/08-CRUD-a-resource.svg?branch=master)](https://travis-ci.org/codefellows-seattle-301d4/08-CRUD-a-resource)
 
