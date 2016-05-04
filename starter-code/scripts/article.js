@@ -145,13 +145,13 @@
           return a.author === author;
         })
         .map(function(a) {
-          return a.body.match(/\b\w+/g).length
+          return a.body.match(/\b\w+/g).length;
         })
         .reduce(function(a, b) {
           return a + b;
         })
-      }
-    })
+      };
+    });
   };
 
   Article.stats = function() {
@@ -160,7 +160,7 @@
       numWords: Article.numwords(),
       Authors: Article.allAuthors(),
     };
-  }
+  };
 
   module.Article = Article;
 })(window);
