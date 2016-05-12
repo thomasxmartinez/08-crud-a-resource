@@ -1,6 +1,6 @@
 ![CF](https://i.imgur.com/7v5ASc8.png)  Lab 08: CRUD a Resource
 =======
-[![Build Status](https://travis-ci.org/codefellows-seattle-301d4/08-CRUD-a-resource.svg?branch=master)](https://travis-ci.org/codefellows-seattle-301d4/08-CRUD-a-resource)
+[![Build Status](https://travis-ci.org/codefellows-seattle-301d4/08-CRUD-a-resource.svg?branch=master)](https://travis-ci.org/codefellows-seattle-301d4/08-CRUD-a-resource) [![GitHub issues](https://img.shields.io/badge/Issues%3F-Ask%20for%20Help!-orange.svg)](https://github.com/codefellows/seattle-301d4/issues/new)
 
 The starter code is all set for you and a pair to dive it, and get it working! Open up the [production deployment](https://cf-mvc-blog--class08.aerobatic.io/) of the working version, and play around in the console.
 
