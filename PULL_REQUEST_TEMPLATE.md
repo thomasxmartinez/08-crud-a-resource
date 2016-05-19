@@ -1,4 +1,4 @@
-Today I worked with _. It took about _.
+Today I worked with _ It took about _
 
 #### Reflect and summarize on your process for each `TODO:` item :
   First, we started on ...
