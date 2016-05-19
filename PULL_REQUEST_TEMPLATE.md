@@ -1,6 +1,6 @@
 Today, _ and _ paired together. It took about _
 
-#### Reflect and summarize on your process for each `TODO:` item :  
+#### Reflect and summarize on your process for each `TODO` item :  
   1. First, we started on ...
   2. Next, we ...
   3. 
