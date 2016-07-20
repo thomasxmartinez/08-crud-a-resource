@@ -21,7 +21,7 @@
   // Set up a DB table for articles.
   Article.createTable = function() {
     webDB.execute(
-      '...;', // TODO: What SQL command do we run here inside these quotes?
+      '', // TODO: What SQL command do we run here inside these quotes?
       function() {
         console.log('Successfully set up the articles table.');
       }
@@ -36,18 +36,16 @@
   };
 
   Article.fetchAll = function(nextFunction) {
-    /* TODO: Refactor this method to check
-        if the database holds any records or not.
-
+    /*
       If the DB has data already, we'll load up the data
         (most recent article first!), and then hand off control to the View.
       Otherwise (if the DB is empty) we need to retrieve the JSON and process it. */
 
-    webDB.execute('...', function(rows) { // TODO: fill these quotes to 'select' our table.
+    webDB.execute('', function(rows) { // TODO: fill these quotes to query our table.
       if (rows.length) {
         /* TODO:
            1 - Use Article.loadAll to instanitate these rows,
-           2 - Pass control to the view by calling the next function that
+           2 - Pass control to the view by invoking the next function that
                 was passed in to Article.fetchAll */
 
       } else {
@@ -78,23 +76,8 @@
         {
           // TODO: Insert an article instance into the database:
           // NOTE: this method will be called elsewhere after we retrieve our JSON
-          'sql': '...;', // <----- complete our SQL command here, inside the quotes.
+          'sql': '', // <----- complete our SQL command here, inside the quotes.
           'data': [this.title, this.author, this.authorUrl, this.category, this.publishedOn, this.body]
-        }
-      ]
-    );
-  };
-
-  Article.prototype.updateRecord = function() {
-    webDB.execute(
-      [
-        {
-          /* TODO: Update an article instance, overwriting
-              its properties into the corresponding record in the database: */
-          /* Note: this is an advanced admin option, so you will need to test
-              out an individual query in the console */
-          'sql': '...;', // <---- complete the command here, inside the quotes;
-          'data': [this.title, this.author, this.authorUrl, this.category, this.publishedOn, this.body, this.id]
         }
       ]
     );
@@ -107,7 +90,7 @@
           // TODO: Delete an article instance from the database based on its id:
           /* Note: this is an advanced admin option, so you will need to test
               out an individual query in the console */
-          'sql': '...;', // <--- complete the command here, inside the quotes;
+          'sql': '', // <--- complete the command here, inside the quotes;
           'data': [this.id]
         }
       ]
@@ -159,14 +142,6 @@
     });
   };
 
-  Article.stats = function() {
-    return {
-      numArticles: Article.allArticles.length,
-      numWords: Article.numwords(),
-      Authors: Article.allAuthors(),
-    };
-  };
 // TODO: ensure that our table has been setup.
-
   module.Article = Article;
 })(window);
