@@ -1,11 +1,9 @@
 (function(module) {
   function Article (opts) {
-    /* DONE: Convert property assignment to Functional Programming style.
-        Now, ALL properties of `opts` will be assigned as properies of the
-        newly created article object. */
-    Object.keys(opts).forEach(function(prop, index, keys) {
+    // DONE: Convert property assignment to Functional Programming style.
+    Object.keys(opts).forEach(function(prop) {
       this[prop] = opts[prop];
-    },this); // Specify that 'this' is to be bound to the constructor instance.
+    }, this); // The optional 'this' here is necessary to keep context.
   }
 
   Article.allArticles = [];
@@ -28,45 +26,10 @@
     );
   };
 
-  // DONE: Refactor to expect the data from the database, rather than localStorage.
+  // NOTE: Refactor to expect the data from the database, rather than localStorage.
   Article.loadAll = function(rows) {
     Article.allArticles = rows.map(function(ele) {
       return new Article(ele);
-    });
-  };
-
-  Article.fetchAll = function(nextFunction) {
-    /*
-      If the DB has data already, we'll load up the data
-        (most recent article first!), and then hand off control to the View.
-      Otherwise (if the DB is empty) we need to retrieve the JSON and process it. */
-
-    webDB.execute('', function(rows) { // TODO: fill these quotes to query our table.
-      if (rows.length) {
-        /* TODO:
-           1 - Use Article.loadAll to instanitate these rows,
-           2 - Pass control to the view by invoking the next function that
-                was passed in to Article.fetchAll */
-
-      } else {
-        $.getJSON('/data/hackerIpsum.json', function(responseData) {
-          // Save each article from this JSON file, so we don't need to request it next time:
-          responseData.forEach(function(obj) {
-            var article = new Article(obj); // This will instantiate an article instance based on each article object from our JSON.
-            /* TODO:
-               1 - 'insert' the newly-instantiated article in the DB:
-                (hint: what can we call on this article instance?). */
-
-          });
-          // Now get ALL the records out the DB, with their database IDs:
-          webDB.execute('', function(rows) { // TODO: select our now full table
-            // TODO:
-            // 1 - Use Article.loadAll to generate our rows,
-            // 2 - Pass control to the view by calling the next function that was passed in to Article.fetchAll
-
-          });
-        });
-      }
     });
   };
 
@@ -74,33 +37,61 @@
     webDB.execute(
       [
         {
-          // TODO: Insert an article instance into the database:
           // NOTE: this method will be called elsewhere after we retrieve our JSON
-          'sql': '', // <----- complete our SQL command here, inside the quotes.
-          'data': [this.title, this.author, this.authorUrl, this.category, this.publishedOn, this.body]
+          'sql': '', // <----- TODO: complete our SQL query here, inside the quotes.
+          'data': [this.title, this.category, this.author, this.authorUrl, this.publishedOn, this.body]
         }
       ]
     );
   };
 
+  Article.fetchAll = function(nextFunction) {
+    webDB.execute(
+      '', // <-----TODO: fill these quotes to query our table.
+      function(rows) {
+        if (rows.length) {
+        /* TODO:
+           1 - Use Article.loadAll to instanitate these rows,
+           2 - Pass control to the view by invoking the next function that
+                was passed in to Article.fetchAll */
+        } else {
+          $.getJSON('/data/hackerIpsum.json', function(responseData) {
+            responseData.forEach(function(obj) {
+              var article = new Article(obj); // This will instantiate an article instance based on each article object from our JSON.
+              /* TODO:
+               1 - 'insert' the newly-instantiated article in the DB:
+             */
+            });
+            // Now get ALL the records out of the database:
+            webDB.execute(
+              '', // <-----TODO: query our table
+              function(rows) {
+                // TODO:
+                // 1 - Use Article.loadAll to process our rows,
+                // 2 - Pass control to the view by calling the next function that was passed in to Article.fetchAll
+              });
+          });
+        }
+      });
+  };
+
+
   Article.prototype.deleteRecord = function() {
     webDB.execute(
       [
         {
-          // TODO: Delete an article instance from the database based on its id:
-          /* Note: this is an advanced admin option, so you will need to test
+          /* NOTE: this is an advanced admin option, so you will need to test
               out an individual query in the console */
-          'sql': '', // <--- complete the command here, inside the quotes;
+          'sql': '', // <---TODO: Delete an article instance from the database based on its id:
           'data': [this.id]
         }
       ]
     );
   };
 
-  Article.truncateTable = function() {
+  Article.clearTable = function() {
     webDB.execute(
-      // TODO: Use correct SQL syntax to delete all records from the articles table.
-      'DELETE ...;' // <----finish the command here, inside the quotes.
+      'DELETE ...;' // <----TODO: delete all records from the articles table.
     );
   };
 
@@ -143,5 +134,6 @@
   };
 
 // TODO: ensure that our table has been setup.
+
   module.Article = Article;
 })(window);
