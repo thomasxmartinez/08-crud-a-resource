@@ -27,7 +27,7 @@
     );
   };
 
-  // NOTE: Refactor to expect the data from the database, rather than localStorage.
+  // NOTE: Refactored to expect articles from the database, rather than localStorage.
   Article.loadAll = function(rows) {
     Article.allArticles = rows.map(function(ele) {
       return new Article(ele);
@@ -62,7 +62,7 @@
              */
             });
             webDB.execute(
-              '', // <-----TODO: query our table for articles again
+              '', // <-----TODO: query our table for articles once more
               function(rows) {
                 // TODO:
                 // 1 - Use Article.loadAll to process our rows,
