@@ -16,8 +16,9 @@
     return template(this);
   };
 
-  // Set up a DB table for articles.
+  // Set up a table for articles.
   Article.createTable = function() {
+    // webDb helps us query our data
     webDB.execute(
       '', // TODO: What SQL command do we run here inside these quotes?
       function() {
@@ -35,13 +36,11 @@
 
   Article.prototype.insertRecord = function() {
     webDB.execute(
-      [
-        {
-          // NOTE: this method will be called elsewhere after we retrieve our JSON
-          'sql': '', // <----- TODO: complete our SQL query here, inside the quotes.
-          'data': [this.title, this.category, this.author, this.authorUrl, this.publishedOn, this.body]
-        }
-      ]
+      [{
+        // NOTE: this method will be called elsewhere after we retrieve our JSON
+        'sql': '', // <----- TODO: complete our SQL query here, inside the quotes.
+        'data': [this.title, this.category, this.author, this.authorUrl, this.publishedOn, this.body]
+      }]
     );
   };
 
@@ -49,11 +48,11 @@
     webDB.execute(
       '', // <-----TODO: fill these quotes to query our table.
       function(rows) {
+        // if we have data in the table
         if (rows.length) {
         /* TODO:
            1 - Use Article.loadAll to instanitate these rows,
-           2 - Pass control to the view by invoking the next function that
-                was passed in to Article.fetchAll */
+           2 - invoke the function that was passed in to fectchAll */
         } else {
           $.getJSON('/data/hackerIpsum.json', function(responseData) {
             responseData.forEach(function(obj) {
@@ -62,13 +61,12 @@
                1 - 'insert' the newly-instantiated article in the DB:
              */
             });
-            // Now get ALL the records out of the database:
             webDB.execute(
-              '', // <-----TODO: query our table
+              '', // <-----TODO: query our table for articles again
               function(rows) {
                 // TODO:
                 // 1 - Use Article.loadAll to process our rows,
-                // 2 - Pass control to the view by calling the next function that was passed in to Article.fetchAll
+                // 2 - invoke the function that was passed in to fetchAll
               });
           });
         }
@@ -99,9 +97,9 @@
     return Article.allArticles.map(function(article) {
       return article.author;
     })
-    .reduce(function(uniqueNames, name) {
-      if (uniqueNames.indexOf(name) === -1) {
-        uniqueNames.push(name);
+    .reduce(function(uniqueNames, curName) {
+      if (uniqueNames.indexOf(curName) === -1) {
+        uniqueNames.push(curName);
       }
       return uniqueNames;
     }, []);
@@ -133,7 +131,7 @@
     });
   };
 
-// TODO: ensure that our table has been setup.
+// TODO: ensure that our table has been created.
 
   module.Article = Article;
 })(window);
